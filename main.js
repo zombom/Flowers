@@ -11,11 +11,13 @@ onload = () => {
 
   btn.addEventListener('click', () => {
       // 1. Play Music
-      // Note: This requires the file to be present.
-      audio.volume = 1.0; 
-      audio.play().catch(error => {
-          console.error("Music could not play. Ensure 'music.mp3' is uploaded to the repository.", error);
-      });
+      // Browser policy requires this click to start audio
+      if(audio) {
+          audio.volume = 1.0;
+          audio.play().catch(error => {
+              console.error("Music playback failed. Ensure 'music.mp3' is in the root folder.", error);
+          });
+      }
 
       // 2. Fade out intro
       intro.classList.add('fade-out');
