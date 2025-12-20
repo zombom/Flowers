@@ -1,21 +1,28 @@
-window.onload = () => {
-    const btn = document.getElementById("accept-btn");
-    const intro = document.getElementById("intro-screen");
-    const music = document.getElementById("bg-music");
+onload = () => {
+    const c = setTimeout(() => {
+      document.body.classList.remove("not-loaded");
+      clearTimeout(c);
+    }, 1000);
+  };
 
-    // Add event listener to the "accept" button
-    if (btn) {
-        btn.addEventListener("click", () => {
-            // 1. Play the music immediately
-            music.play().catch(err => console.log("Music blocked: ", err));
+  const intro = document.getElementById('intro-screen');
+  const btn = document.getElementById('start-btn');
+  const audio = document.getElementById('bg-music');
 
-            // 2. Hide the intro overlay
-            intro.classList.add("hidden");
+  btn.addEventListener('click', () => {
+      // 1. Play Music
+      // Note: This requires the file to be present.
+      audio.volume = 1.0; 
+      audio.play().catch(error => {
+          console.error("Music could not play. Ensure 'music.mp3' is uploaded to the repository.", error);
+      });
 
-            // 3. Start the animations by removing the pause class
-            setTimeout(() => {
-                document.body.classList.remove("container");
-            }, 600);
-        });
-    }
-};
+      // 2. Fade out intro
+      intro.classList.add('fade-out');
+
+      // 3. Start flower animation
+      setTimeout(() => {
+          document.body.classList.remove("container"); 
+          intro.style.display = 'none'; 
+      }, 1000);
+  });
