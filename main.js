@@ -3,11 +3,10 @@ window.onload = () => {
     const intro = document.getElementById("intro-screen");
 
     btn.addEventListener("click", () => {
-        // 1. Start fading out the apology screen
+        // Start fading the apology message
         intro.classList.add("hidden");
 
-        // 2. Unpause the flower animations
-        // We wait a tiny bit so the bloom starts as the message disappears
+        // Start the flower animations as the screen fades
         setTimeout(() => {
             document.body.classList.remove("container");
         }, 500);
